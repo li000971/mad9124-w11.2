@@ -1,8 +1,8 @@
-import sql from './connection.js';
+import sql from "./connection.js";
 
 async function getAllEmployees() {
   //get all the employees from the employees table
-  const columns = ['employee_id', 'full_name', 'income_type', 'income', 'updated_at'];
+  const columns = ["employee_id", "full_name", "income_type", "income"];
   const results = await sql`
   SELECT ${sql(columns)}
   FROM employees
@@ -23,7 +23,13 @@ async function getEmployeeManagers() {
 
 async function getEmployee(eid) {
   //get ONE employee based on id
-  const columns = ['employee_id', 'full_name', 'income_type', 'income', 'updated_at'];
+  const columns = [
+    "employee_id",
+    "full_name",
+    "income_type",
+    "income",
+    "updated_at",
+  ];
   const results = await sql`
   SELECT ${sql(columns)}
   FROM employees
@@ -35,7 +41,7 @@ async function getEmployee(eid) {
 
 async function addEmployee(employee) {
   //insert { full_name, manager_id, income_type, income }
-  const columns = ['full_name', 'manager_id', 'income_type', 'income'];
+  const columns = ["full_name", "manager_id", "income_type", "income"];
   const results = sql`
   INSERT INTO employees
     ${sql(employee, columns)}
@@ -47,7 +53,7 @@ async function addEmployee(employee) {
 
 async function editEmployee(employee) {
   //update
-  const columns = ['full_name', 'manager_id', 'income_type', 'income'];
+  const columns = ["full_name", "manager_id", "income_type", "income"];
   const results = sql`
   UPDATE employees SET
   ${sql(employee, columns)}
@@ -66,4 +72,11 @@ async function removeEmployee(eid) {
   return results;
 }
 
-export { getAllEmployees, getEmployee, getEmployeeManagers, addEmployee, editEmployee, removeEmployee };
+export {
+  getAllEmployees,
+  getEmployee,
+  getEmployeeManagers,
+  addEmployee,
+  editEmployee,
+  removeEmployee,
+};
