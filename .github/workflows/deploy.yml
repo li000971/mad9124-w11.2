@@ -25,4 +25,7 @@ jobs:
         # runs the src/db/migration.js file with node
         env:
           DATABASE_URL: "${{ secrets.DATABASE_URL }}"
-        run: node src/db/migration.js
+        run: |
+          host_part=$(echo "$DATABASE_URL" | sed -E 's#.*@([^.]*\.[^.]*\.[^./]*).*#\1#')
+          echo "Database host snippet: $host_part"
+          node src/db/migration.js
