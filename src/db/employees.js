@@ -2,7 +2,13 @@ import sql from "./connection.js";
 
 async function getAllEmployees() {
   //get all the employees from the employees table
-  const columns = ["employee_id", "full_name", "income_type", "income"];
+  const columns = [
+    "employee_id",
+    "full_name",
+    "income_type",
+    "income",
+    "updated_at",
+  ];
   const results = await sql`
   SELECT ${sql(columns)}
   FROM employees
